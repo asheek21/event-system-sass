@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Conference;
+use App\Models\Talk;
 use App\Models\User;
+use Database\Factories\ConferenceFactory;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,9 +18,14 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        User::factory()
+        ->has(Talk::factory()->count(3))
+        ->create([
+            'name' => 'asheek',
+            'email' => 'asheek@gmail.com',
+            'password' => 'password'
         ]);
+
+        Conference::factory()->count(3)->create() ;
     }
 }
